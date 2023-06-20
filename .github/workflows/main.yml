@@ -76,4 +76,4 @@ jobs:
         # The branch to push on the remote repository (Default: master)
         remote-branch: master # optional, default is master
         # Additional flags to be passed to the git push command. Could be used to force push
-        git-push-flags: --force # optional, default is
+        git-push-flags: --force # optional
