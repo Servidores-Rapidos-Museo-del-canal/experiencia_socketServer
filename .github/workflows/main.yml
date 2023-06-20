@@ -1,0 +1,79 @@
+# This is a basic workflow to help you get started with Actions
+# Depende de los secretos que se listan en el código
+
+name: Dokku-Deployment
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - staging
+      - main
+
+jobs:
+
+  build-staging:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Controls de run per branch and only on approved PRs
+    if: contains(github.ref, 'staging')
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+      with:
+          fetch-depth: 0
+
+    # Runs a single command using the runners shell
+    - id: deploy
+      name: Dokku Deploy action
+      uses: idoberko2/dokku-deploy-github-action@v1.0.1
+      with:
+        # The ssh private key to the dokku instance. WARNING: use a secret! Do not pass a plain text value!
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_STAGING }}
+        # The user to use for ssh (Default: dokku)
+        dokku-user: ${{ secrets.DOKKU_USER_STAGING }} # optional, default is dokku
+        # The dokku host to ssh into
+        dokku-host: ${{ secrets.DOKKU_HOST_STAGING }}
+        # The dokku app name
+        app-name: ${{ secrets.APP_NAME_STAGING }}
+        # SSH port of the Dokku instance
+        ssh-port: ${{ secrets.SSH_PORT_STAGING }}
+        # The branch to push on the remote repository (Default: master)
+        remote-branch: master # optional, default is master
+        # Additional flags to be passed to the git push command. Could be used to force push
+        git-push-flags: --force # optional, default is
+
+  build-main:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Controls de run per branch and only on approved PRs
+    if: contains(github.ref, 'main')
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+      with:
+          fetch-depth: 0
+
+    # Runs a single command using the runners shell
+    - id: deploy
+      name: Dokku Deploy action
+      uses: idoberko2/dokku-deploy-github-action@v1.0.1
+      with:
+        # The ssh private key to the dokku instance. WARNING: use a secret! Do not pass a plain text value!
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_PRODUCTION }}
+        # The user to use for ssh (Default: dokku)
+        dokku-user: ${{ secrets.DOKKU_USER_PRODUCTION }} # optional, default is dokku
+        # The dokku host to ssh into
+        dokku-host: ${{ secrets.DOKKU_HOST_PRODUCTION }}
+        # The dokku app name
+        app-name: ${{ secrets.APP_NAME_PRODUCTION }}
+        # SSH port of the Dokku instance
+        ssh-port: ${{ secrets.SSH_PORT_PRODUCTION }}
+        # The branch to push on the remote repository (Default: master)
+        remote-branch: master # optional, default is master
+        # Additional flags to be passed to the git push command. Could be used to force push
+        git-push-flags: --force # optional, default is
