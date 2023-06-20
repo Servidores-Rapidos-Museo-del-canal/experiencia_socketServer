@@ -4,15 +4,18 @@
 name: Dokku-Deployment
 
 on:
+  push:
+    branches:
+      - staging
+      - main
   pull_request:
-    types: [closed]
     branches:
       - staging
       - main
 
 jobs:
-
-  build-staging:
+  
+   build-staging:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -45,7 +48,7 @@ jobs:
         # Additional flags to be passed to the git push command. Could be used to force push
         git-push-flags: --force # optional, default is
 
-  build-main:
+  build-production:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -76,4 +79,4 @@ jobs:
         # The branch to push on the remote repository (Default: master)
         remote-branch: master # optional, default is master
         # Additional flags to be passed to the git push command. Could be used to force push
-        git-push-flags: --force # optional
+        git-push-flags: --force # optional, default is
