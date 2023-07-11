@@ -53,7 +53,7 @@ function video (socket){
 
 function Home(socket){
   socket.on("home",(payload=String)=>{
-    console.log("home-recive", payload);
+    console.log("home-recive",payload);
      io.emit('route',payload);
     });
 }
