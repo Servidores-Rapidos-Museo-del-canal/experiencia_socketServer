@@ -18,9 +18,19 @@ app.use(bodyParser.json());
 //puerto
 const PORT = process.env.PORT || 2000;
 // Server - App
+app.get("/",(req, res) => {
+
+  res.send("Hola Mundo")
+
+});
+
 server.listen(PORT, () => {
   console.log("Servidor en ejecucion:" + PORT);
 });
+
+
+
+
 
 io.on("connection", (socket) => {
   console.log("Socket - EXP: ", socket.id);
@@ -44,7 +54,7 @@ function video (socket){
 
 function Home(socket){
   socket.on("home",(payload=String)=>{
-    console.log("home-recive", payload);
+    console.log("home-recive",payload);
      io.emit('route',payload);
     });
 }
