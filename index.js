@@ -38,6 +38,7 @@ io.on("connection", (socket) => {
   video(socket);
   Home(socket);
   Portal(socket)
+
 });
 
 io.on("disconnected", () => {
