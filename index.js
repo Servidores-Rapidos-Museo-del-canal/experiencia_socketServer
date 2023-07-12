@@ -37,7 +37,7 @@ io.on("connection", (socket) => {
   //funcion escuha video
   video(socket);
   Home(socket);
-  BaseMilitar(socket)
+  Portal(socket)
 });
 
 io.on("disconnected", () => {
@@ -60,10 +60,10 @@ function Home(socket){
 
 }
 
-function BaseMilitar(socket){
-  socket.on("BaseMilitar",(payload=String)=>{
-    console.log("dataMilitar: ", payload);
-     io.emit('dataMilitar',payload);
+function Portal(socket){
+  socket.on("portal",(payload=String)=>{
+    console.log("portal: ", payload);
+     io.emit('dataPortal',payload);
     });
 }
 
