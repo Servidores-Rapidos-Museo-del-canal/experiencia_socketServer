@@ -34,6 +34,7 @@ server.listen(PORT, () => {
 
 io.on("connection" , {transports: ['websocket']}, (socket) => {
   console.log("Socket - EXP: ", socket.id);
+  
   //funcion escuha video
   video(socket);
   Home(socket);
