@@ -46,6 +46,7 @@ io.on("disconnected", () => {
 })
 
 
+
 function video (socket){
   socket.on("video",(payload=String)=>{
   console.log("video Recibido", payload);
