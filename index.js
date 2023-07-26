@@ -38,6 +38,7 @@ io.on("connection" , {transports: ['websocket']}, (socket) => {
   video(socket);
   Home(socket);
   Portal(socket)
+
 });
 
 io.on("disconnected", () => {
