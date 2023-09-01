@@ -16,11 +16,11 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //puerto
-const PORT = process.env.PORT || 2000;
+const PORT = process.env.PORT || 5000;
 // Server - App
 app.get("/",(req, res) => {
 
-  res.send("Hola Mundo")
+  res.send("Hola Mundo");
 
 });
 
@@ -29,25 +29,18 @@ server.listen(PORT, () => {
 });
 
 
-
-
-
-
-io.on("connection" , {transports: ['websocket']}, (socket) => {
-
+io.on("connection", (socket) => {
   console.log("Socket - EXP: ", socket.id);
-  
   //funcion escuha video
-  video(socket);
-  Home(socket);
-  Portal(socket)
+   video(socket);
+   Home(socket);
+   Portal(socket);
 
 });
 
 io.on("disconnected", () => {
   console.log("Fuera de service");
 })
-
 
 
 function video (socket){
@@ -62,7 +55,6 @@ function Home(socket){
     console.log("home-recive",payload);
      io.emit('route',payload);
     });
-
 }
 
 function Portal(socket){
