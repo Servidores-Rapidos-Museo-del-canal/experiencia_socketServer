@@ -33,8 +33,9 @@ io.on("connection", (socket) => {
   console.log("Socket - EXP: ", socket.id);
   //funcion escuha video
    video(socket);
-   Home(socket);
-   Portal(socket);
+   Home(socket);//HOME INICIO
+   Portal(socket);//PROYECCIONES
+   Idioma(socket);//IDIOMA
 
 });
 
@@ -62,6 +63,13 @@ function Portal(socket){
     console.log("portal: ", payload);
      io.emit('dataPortal',payload);
     });
+}
+
+function Idioma(socket){
+  socket.on("lang",(payload=String)=>{
+    console.log("Idioma: ", payload);
+    io.emit('dataLang',payload);
+  })
 }
 
 
