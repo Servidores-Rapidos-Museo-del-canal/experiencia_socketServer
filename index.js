@@ -75,7 +75,7 @@ function Idioma(socket){
 
 function Slider(socket){
   socket.on("slidenIn",(payload=String)=>{
-    console.log("Idioma: ", payload);
+    console.log("Slide Img: ", payload);
     io.emit('slideOut',payload);
   })
 }
