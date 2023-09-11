@@ -36,6 +36,7 @@ io.on("connection", (socket) => {
    Home(socket);//HOME INICIO
    Portal(socket);//PROYECCIONES
    Idioma(socket);//IDIOMA
+   Slider(socket);//SLIDER IMAGEN MAPA
 
 });
 
@@ -69,6 +70,13 @@ function Idioma(socket){
   socket.on("lang",(payload=String)=>{
     console.log("Idioma: ", payload);
     io.emit('dataLang',payload);
+  })
+}
+
+function Slider(socket){
+  socket.on("slidenIn",(payload=String)=>{
+    console.log("Idioma: ", payload);
+    io.emit('slideOut',payload);
   })
 }
 
