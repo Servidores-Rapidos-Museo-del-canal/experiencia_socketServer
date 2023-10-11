@@ -37,7 +37,7 @@ io.on("connection", (socket) => {
    Portal(socket);//PROYECCIONES
    Idioma(socket);//IDIOMA
    Slider(socket);//SLIDER IMAGEN MAPA
-
+   SliderImg(socket)//SLIDER IMG global
 });
 
 io.on("disconnected", () => {
@@ -67,9 +67,9 @@ function Portal(socket){
 }
 
 function Idioma(socket){
-  socket.on("lang",(payload=String)=>{
-    console.log("Idioma: ", payload);
-    io.emit('dataLang',payload);
+  socket.on("langPost",(payload=String)=>{
+   // console.log(payload);
+    io.emit('langGet',payload);
   })
 }
 
@@ -80,4 +80,10 @@ function Slider(socket){
   })
 }
 
+function SliderImg(socket){
+  socket.on("img-In",(payload=String)=>{
+  //   console.log("Slide Img: ", payload);
+    io.emit('img-Out',payload);
+  })
+}
 
