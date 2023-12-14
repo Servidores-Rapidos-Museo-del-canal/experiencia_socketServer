@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //puerto
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT
 // Server - App
 app.get("/",(req, res) => {
 
@@ -70,7 +70,6 @@ function Portal(socket){
 
 function Idioma(socket){
   socket.on("langPost",(payload=String)=>{
-   // console.log(payload);
     io.emit('langGet',payload);
   })
 }
@@ -84,7 +83,6 @@ function Slider(socket){
 
 function SliderImg(socket){
   socket.on("img-In",(payload=String)=>{
-  //   console.log("Slide Img: ", payload);
     io.emit('img-Out',payload);
   })
 }
