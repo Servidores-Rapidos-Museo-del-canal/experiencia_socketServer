@@ -38,6 +38,8 @@ io.on("connection", (socket) => {
    Idioma(socket);//IDIOMA
    Slider(socket);//SLIDER IMAGEN MAPA
    SliderImg(socket)//SLIDER IMG global
+   Apagar(socket)//Apagando 
+   reiniciar(socket)//Reiniciando
 });
 
 io.on("disconnected", () => {
@@ -87,3 +89,23 @@ function SliderImg(socket){
   })
 }
 
+app.get('/apagar',(req, res)=>{
+  res.status(200).json({message:'Apagando Equipo'})
+  }
+)
+
+app.get('/reiniciar',(req, res)=>{
+  res.status(200).json({message:'Reiniciando Equipo'})
+})
+
+function Apagar(socket){
+  socket.on("apagado",(payload=String)=>{
+   io.emit("apagando-recibiendo",payload);
+  })
+}
+
+function reiniciar(socket){
+  socket.on("reiniciar",(payload=String)=>{
+   io.emit("reboot-recibiendo",payload);
+  })
+}
