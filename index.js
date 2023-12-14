@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //puerto
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 5000;
 // Server - App
 app.get("/",(req, res) => {
 
