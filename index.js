@@ -29,7 +29,7 @@ server.listen(PORT, () => {
 });
 
 
-io.on("connection",{transports: ['websocket']}, (socket) => {
+io.on("connection", (socket) => {
   console.log("Socket - EXP: ", socket.id);
   //funcion escuha video
    video(socket);
