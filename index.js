@@ -29,7 +29,7 @@ server.listen(PORT, () => {
 });
 
 
-io.on("connection", (socket) => {
+io.on("connection",{transports: ['websocket']}, (socket) => {
   console.log("Socket - EXP: ", socket.id);
   //funcion escuha video
    video(socket);
@@ -102,14 +102,14 @@ app.post('/api/v1/reiniciar',(req, res)=>{
   io.emit("reiniciar",parseInt(jsonData));
 })
 
-// function Apagar(socket){
-//   socket.on("apagado",(payload=String)=>{
-//    io.emit("apagando-recibiendo",payload);
-//   })
-// }
+/*function Apagar(socket){
+   socket.on("apagado",(payload=String)=>{
+   io.emit("apagando-recibiendo",payload);
+   })
+ }
 
-// function reiniciar(socket){
-//   socket.on("reiniciar",(payload=String)=>{
-//    io.emit("reboot-recibiendo",payload);
-//   })
-// }
+ function reiniciar(socket){
+ socket.on("reiniciar",(payload=String)=>{
+   io.emit("reboot-recibiendo",payload);
+  })
+ }*/
