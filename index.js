@@ -87,19 +87,24 @@ function SliderImg(socket){
   })
 }
 
+//copias
 app.post('/api/v1/apagar',(req, res)=>{
   res.status(200).json({message:'Apagando Equipo'})
-  const jsonData=Object.values(req.body);
-  console.log(jsonData);
-    io.emit("apagado", parseInt(jsonData));
+  const jsonData={
+    data:req.body
+  }
+  console.log(jsonData)
+  io.emit("apagado", jsonData);
   }
 )
-
+///Copias 
 app.post('/api/v1/reiniciar',(req, res)=>{
   res.status(200).json({message:'Reiniciando Equipo'})
-  const jsonData=Object.values(req.body);
+  const jsonData={
+    data:req.body
+    }
   console.log(jsonData)
-  io.emit("reiniciar",parseInt(jsonData));
+  io.emit("reiniciar",jsonData);
 })
 
 /*function Apagar(socket){
