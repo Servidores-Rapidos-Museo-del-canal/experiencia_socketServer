@@ -38,8 +38,8 @@ io.on("connection", (socket) => {
    Idioma(socket);//IDIOMA
    Slider(socket);//SLIDER IMAGEN MAPA
    SliderImg(socket)//SLIDER IMG global
-  //  Apagar(socket)//Apagando 
-  //  reiniciar(socket)//Reiniciando
+   Apagar(socket)//Apagando 
+   reiniciar(socket)//Reiniciando
 });
 
 io.on("disconnected", () => {
@@ -90,24 +90,20 @@ function SliderImg(socket){
 //copias
 app.post('/api/v1/apagar',(req, res)=>{
   res.status(200).json({message:'Apagando Equipo'})
-  const jsonData={
-    data:req.body
-  }
-  console.log(jsonData)
-  io.emit("apagado", jsonData);
+  const token=req.body
+ // console.log(token)
+  io.emit("apagado", token);
   }
 )
 ///Copias 
 app.post('/api/v1/reiniciar',(req, res)=>{
   res.status(200).json({message:'Reiniciando Equipo'})
-  const jsonData={
-    data:req.body
-    }
-  console.log(jsonData)
-  io.emit("reiniciar",jsonData);
+  const token=req.body
+ // console.log(token)
+  io.emit("reiniciar",token);
 })
 
-/*function Apagar(socket){
+function Apagar(socket){
    socket.on("apagado",(payload=String)=>{
    io.emit("apagando-recibiendo",payload);
    })
@@ -117,4 +113,4 @@ app.post('/api/v1/reiniciar',(req, res)=>{
  socket.on("reiniciar",(payload=String)=>{
    io.emit("reboot-recibiendo",payload);
   })
- }*/
+ }
