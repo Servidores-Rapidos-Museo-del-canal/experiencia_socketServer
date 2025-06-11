@@ -40,6 +40,10 @@ io.on("connection", (socket) => {
    SliderImg(socket)//SLIDER IMG global
    Apagar(socket)//Apagando 
    reiniciar(socket)//Reiniciando
+   CanalPanama1(socket);//Canal Panama 1
+   CanalPanama2(socket);//Canal Panama 2
+   CanalPanama3(socket);//Canal Panama 3
+   ClaveMorse(socket);//Clave Morse
 });
 
 io.on("disconnected", () => {
@@ -67,6 +71,7 @@ function Portal(socket){
      io.emit('dataPortal',payload);
     });
 }
+
 
 function Idioma(socket){
   socket.on("langPost",(payload=String)=>{
@@ -109,3 +114,32 @@ function reiniciar(socket){
    io.emit("reboot-recibiendo",payload);
   })
 }
+
+
+function CanalPanama1(socket){
+  socket.on("canalPanama1",(payload=String)=>{
+    console.log("Canal Panama 1: ", payload);
+    io.emit('canalPanama1',payload);
+  })
+}
+
+function CanalPanama2(socket){
+  socket.on("canalPanama2",(payload=String)=>{
+    console.log("Canal Panama 2: ", payload);
+    io.emit('canalPanama2',payload);
+  })
+}
+
+function CanalPanama3(socket){
+  socket.on("canalPanama3",(payload=String)=>{
+    console.log("Canal Panama 3: ", payload);
+    io.emit('canalPanama3',payload);
+  })
+}
+
+function ClaveMorse(socket){
+  socket.on("claveMorse",(payload=String)=>{
+    console.log("Clave Morse: ", payload);
+    io.emit('claveMorse',payload);
+  })
+} 
